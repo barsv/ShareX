@@ -49,7 +49,8 @@ namespace ShareX
         FileUpload,
         TextUpload,
         ShortenURL,
-        ShareURL
+        ShareURL,
+        MakeShareXUrl
     }
 
     [Flags]
@@ -97,7 +98,9 @@ namespace ShareX
         [Description("Open URL")]
         OpenURL = 1 << 3,
         [Description("Show QR code window")]
-        ShowQRCode = 1 << 4
+        ShowQRCode = 1 << 4,
+        [Description("Make ShareX Url")]
+        MakeShareXUrl = 1 << 5
     }
 
     public enum AfterCaptureFormResult

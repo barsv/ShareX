@@ -23,6 +23,7 @@
 
 #endregion License Information (GPL v3)
 
+using System.Web;
 using HelpersLib;
 using System;
 using System.Drawing;
@@ -601,6 +602,12 @@ namespace ShareX
         {
             try
             {
+                if (Info.TaskSettings.AfterUploadJob.HasFlag(AfterUploadTasks.MakeShareXUrl) 
+                    && Info.DataType == EDataType.Image)
+                {
+                    Info.Result.URL = string.Format("http://baranov.me/ShareX.html?imgUrl={0}",
+                        HttpUtility.UrlDecode(Info.Result.URL));
+                }
                 if (Info.Job != TaskJob.ShareURL && (Info.TaskSettings.AfterUploadJob.HasFlag(AfterUploadTasks.UseURLShortener) || Info.Job == TaskJob.ShortenURL ||
                     (Info.TaskSettings.AdvancedSettings.AutoShortenURLLength > 0 && Info.Result.URL.Length > Info.TaskSettings.AdvancedSettings.AutoShortenURLLength)))
                 {
